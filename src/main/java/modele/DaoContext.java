@@ -19,7 +19,7 @@ public class DaoContext {
         }
 
         try {
-            this.connection = DriverManager.getConnection( "jdbc:mysql://localhost:3306/hotellerie_cda", "root", "" );
+            this.connection = DriverManager.getConnection( "jdbc:mysql://localhost:3306/hotel_projet", "root", "" );
         } catch ( SQLException e ) {
             System.out.println( e );
         }

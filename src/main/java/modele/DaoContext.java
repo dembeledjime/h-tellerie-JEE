@@ -9,46 +9,40 @@ import java.sql.Statement;
 
 public class DaoContext {
 
-    protected Connection connection;
+	protected Connection connection;
 
-    public DaoContext() {
-        try {
-            Class.forName( "com.mysql.cj.jdbc.Driver" );
-        } catch ( ClassNotFoundException e ) {
-            System.out.println( e );
-        }
+	public DaoContext() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.out.println(e);
+		}
 
-        try {
-            this.connection = DriverManager.getConnection( "jdbc:mysql://localhost:3306/hotel_projet", "root", "" );
-        } catch ( SQLException e ) {
-            System.out.println( e );
-        }
-    }
+		try {
+			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_projet", "root", "");
+		} catch (SQLException e) { System.out.println(e); }
+	}
 
-    public ResultSet requeteStatement( String query ) {
-        try {
-            Statement statement = connection.createStatement();
-            return statement.executeQuery( query );
-        } catch ( SQLException e ) {
-            System.out.println( e );
-        }
+	public ResultSet requeteStatement(String query) {
+		try {
+			Statement statement = connection.createStatement();
+			return statement.executeQuery(query);
+		} catch (SQLException e) { System.out.println(e); }
 
-        return null;
-    }
+		return null;
+	}
 
-    public ResultSet requetePreparedStatement( String query, int value ) {
-        ResultSet resultSet = null;
-        try {
-            // "SELECT * FROM chambre WHERE id = ?";
-            PreparedStatement statement = connection.prepareStatement( query );
-            statement.setObject( 1, value );
-            resultSet = statement.executeQuery();
+	public ResultSet requetePreparedStatement(String query, int value) {
+		ResultSet resultSet = null;
+		try {
 
-        } catch ( SQLException e ) {
-            System.out.println( e );
-        }
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setObject(1, value);
+			resultSet = statement.executeQuery();
 
-        return resultSet;
-    }
+		} catch (SQLException e) { System.out.println(e); }
+
+		return resultSet;
+	}
 
 }
